@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+  }
+
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  td.status {
+    font-weight: bold;
+  }
+
+  td.status.online {
+    color: green;
+  }
+
+  td.status.offline {
+    color: red;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .messages {
+    margin: 20px auto;
+    width: 80%;
+    background-color: #eee;
+    padding: 10px;
+  }
+
+  .messages p {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .refresh {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+  }
+
+  .refresh button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* Sidebar */
+  .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 16px 18px 16px 19px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f1f1f1;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+    background-color: #ddd;
+  }
+  
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+
+  /* .bigger{
+  width: 150px;
+  height: 19px;    
+  } */
+  .bigger {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  
+  input.bigger {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button.bigger {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button.bigger:hover {
+    background-color: #0056b3;
+  }
+  
+  input.bigger:focus,
+  button.bigger:focus {
+    outline: none;
+    box-shadow: 0 0 5px #007bff;
+  }
+  
