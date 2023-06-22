@@ -7,10 +7,8 @@
   </head>
   <body>
     <div class="sidenav">
-      <a href="{{url_for('home')}}">Home</a>
-
-      <!-- <a href="#">Add Website</a> -->
-      <a href="{{url_for('addmail')}}">Add Email</a>
+        <a href="{{url_for('home')}}">Home</a>
+      <a href="{{url_for('addweb')}}">Add Website</a>
       <a href="#">View Emails</a>
     </div>
     <div class="main">
@@ -18,17 +16,17 @@
       <table id="websites-table">
         <thead>
           <tr>
-            <th>Website Name</th>
+            <th> Email</th>
             
-            <th>Date </th>
+            <th> </th>
             <th>Action </th>
           </tr>
         </thead>
         <tbody>
             <form>
             <tr>
-              <td><input type="text" id="webname" class="bigger" name='webname' placeholder="https://www.google.com"></td>
-              <td><input type="date" name="date" id="" class="bigger"></td>
+              <td><input type="text" id="mail" class="bigger" name='mail' placeholder="johndoe@gmail.com"></td>
+              <td></td>
               <td><input type="button" name="" id="" class="bigger" value="Submit"></td>
             </tr>
           

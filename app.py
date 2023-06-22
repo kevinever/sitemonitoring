@@ -368,6 +368,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 from sendmail import *
 app = Flask(__name__)
+from defaced import *
 
 
 def check_websites():
@@ -387,8 +388,13 @@ def check_websites():
         ping = row[4]
 
         response = None
+
+
         try:
             response = requests.get(url, timeout=10)
+            res = requests.get(url,timeout=5)
+            if res.status_code != 200:
+                send_email()
             if response.status_code == 200:
                 content_hash = hashlib.md5(response.content).hexdigest()
                 cur.execute("UPDATE urls SET status = 200, content_hash = %s WHERE id = %s", (content_hash, url_id))
@@ -397,6 +403,7 @@ def check_websites():
                 print(message)
                 messages.append(message)
                 # send_email()
+            
             else:
                 cur.execute("UPDATE urls SET status = %s WHERE id = %s", (response.status_code, url_id))
                 conn.commit()
@@ -482,7 +489,9 @@ def addweb():
     return render_template('addweb.html')
 
 
-
+@app.route('/addmail')
+def addmail():
+    return render_template('addmail.html')
 
 
 if __name__ == "__main__":
