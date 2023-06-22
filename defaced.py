@@ -1,4 +1,4 @@
-import requests 
+# import requests 
 import bs4
 # from sendmail import *
 from app import *
@@ -6,167 +6,6 @@ from app import *
 
 
 from app import *
-# from flask import Flask, render_template,send_file
-# import requests
-
-# import psycopg2
-# from apscheduler.schedulers.background import BackgroundScheduler
-# from bs4 import BeautifulSoup
-# import hashlib
-# import smtplib
-# from email.mime.text import MIMEText
-# from email.mime.multipart import MIMEMultipart
-# import subprocess
-# import chardet
-
-# from datascience import *
-
-
-# from email.utils import COMMASPACE
-# from urllib.parse import urlparse
-# import logging
-
-# import os
-# from app import *
-# # def send_email(url, old_content, new_content, user_id, smtp_server='smtp.gmail.com', smtp_port=587, smtp_username='kalisadoe@gmail.com', smtp_password='pibdptzdjqvltexu'):
-
-# #     try:
-# #         conn = psycopg2.connect(dbname="monitoring", user="postgres", password="post123", host="localhost",port="5432")
-# #         cursor = conn.cursor()
-# #         cursor.execute("SELECT email FROM users WHERE id IN %s", (tuple(user_id),))
-# #         to_addr = cursor.fetchone()[0]
-# #         from_addr = "kalisadoe@gmail.com"
-# #         msg = MIMEText(new_content)
-# #     except Exception as e:
-# #         logging.error(f"Error fetching email address for user id {user_id}: {e}")
-# #         return
-
-# #     # ...
-
-# #     try:
-# #         with smtplib.SMTP(smtp_server, smtp_port) as server:
-# #             server.ehlo()
-# #             server.starttls()
-# #             server.ehlo()
-# #             server.login(smtp_username, smtp_password)
-# #             server.sendmail(from_addr, to_addr, msg.as_string())
-# #             logging.info(f"Email sent successfully to {to_addr}")
-# #     except Exception as e:
-# #         logging.error(f"Error sending email to {to_addr}: {e}")
-
-
-
-
-# # conn = psycopg2.connect("dbname='monitoring' user='postgres' password='post123' host='localhost' port='5432' ")
-# # cur = conn.cursor()
-# # cur.execute("select url from urls")
-# # url = cur.fetchone()[0]
-# # cur.execute("select content_before  from defaced_websites")
-# # old_content = cur.fetchall()
-# # cur.execute("select content_after from defaced_websites")
-# # new_content = cur.fetchall()
-# # cur.execute("select id from users")
-# # user_id = cur.fetchall()
-# # conn.commit()
-
-# def send_email(url, old_content, new_content, user_ids, smtp_server='smtp.gmail.com', smtp_port=587, smtp_username='kalisadoe@gmail.com', smtp_password='pibdptzdjqvltexu'):
-
-#     try:
-#         conn = psycopg2.connect(dbname="monitoring", user="postgres", password="post123", host="localhost",port="5432")
-#         cursor = conn.cursor()
-#         cursor.execute("SELECT email FROM users WHERE id = ANY(%s)", (user_ids,))
-#         to_addresses = [row[0] for row in cursor.fetchall()]
-#         from_addr = "kalisadoe@gmail.com"
-#         msg = MIMEText(new_content)
-#     except Exception as e:
-#         logging.error(f"Error fetching email addresses for user IDs {user_ids}: {e}")
-#         return
-
-#     # ...
-
-#     try:
-#         with smtplib.SMTP(smtp_server, smtp_port) as server:
-#             server.ehlo()
-#             server.starttls()
-#             server.ehlo()
-#             server.login(smtp_username, smtp_password)
-#             server.sendmail(from_addr, to_addresses, msg.as_string())
-#             logging.info(f"Email sent successfully to {to_addresses}")
-#     except Exception as e:
-#         logging.error(f"Error sending email to {to_addresses}: {e}")
-
-
-# conn = psycopg2.connect("dbname='monitoring' user='postgres' password='post123' host='localhost' port='5432' ")
-# cur = conn.cursor()
-# cur.execute("select url from urls")
-# url = cur.fetchone()[0]
-# cur.execute("select content_before  from defaced_websites")
-# old_content = cur.fetchall()
-# cur.execute("select content_after from defaced_websites")
-# new_content = cur.fetchall()
-# cur.execute("select id from users")
-# user_id = cur.fetchall()
-# conn.commit()
-
-# send_email(url, old_content, new_content, user_id)
-
-
-
-
-
-# import smtplib
-# from email.mime.text import MIMEText
-# from email.header import Header
-# import psycopg2
-# import logging
-
-# def send_email(url, old_content, new_content, user_ids, subject, smtp_server='smtp.gmail.com', smtp_port=587, smtp_username='kalisadoe@gmail.com', smtp_password='pibdptzdjqvltexu'):
-
-#     try:
-#         conn = psycopg2.connect(dbname="monitoring", user="postgres", password="post123", host="localhost", port="5432")
-#         cursor = conn.cursor()
-#         cursor.execute("SELECT email FROM users WHERE id = ANY(%s)", (user_ids,))
-#         to_addresses = [row[0] for row in cursor.fetchall()]
-#         from_addr = "kalisadoe@gmail.com"
-#         msg = MIMEText(new_content)
-#         msg['Subject'] = Header(subject, 'utf-8')  # Set the subject
-#     except Exception as e:
-#         logging.error(f"Error fetching email addresses for user IDs {user_ids}: {e}")
-#         return
-
-#     # ...
-
-#     try:
-#         with smtplib.SMTP(smtp_server, smtp_port) as server:
-#             server.ehlo()
-#             server.starttls()
-#             server.ehlo()
-#             server.login(smtp_username, smtp_password)
-#             server.sendmail(from_addr, to_addresses, msg.as_string())
-#             logging.info(f"Email sent successfully to {to_addresses}")
-#     except Exception as e:
-#         logging.error(f"Error sending email to {to_addresses}: {e}")
-
-
-# conn = psycopg2.connect("dbname='monitoring' user='postgres' password='post123' host='localhost' port='5432'")
-# cur = conn.cursor()
-# cur.execute("SELECT url FROM urls")
-# url = cur.fetchone()[0]
-# cur.execute("SELECT content_before FROM defaced_websites")
-# old_content = cur.fetchall()
-# cur.execute("SELECT content_after FROM defaced_websites")
-# new_content = cur.fetchall()
-# cur.execute("SELECT id FROM users")
-# user_id = cur.fetchall()
-# conn.commit()
-
-# user_ids = [row[0] for row in user_id]
-# old_content = old_content[0][0]
-# new_content = new_content[0][0]
-
-# subject = "Website Monitoring Notification"  # Set the email subject
-
-# send_email(url, old_content, new_content, user_ids, subject)
 import requests
 import smtplib
 from email.mime.text import MIMEText
@@ -248,29 +87,6 @@ except Exception as e:
     logging.error(f"Error fetching data from the database: {e}")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from apscheduler.schedulers.background import BackgroundScheduler
 
 product="https://kevinever.github.io/hiddentech/"
@@ -279,20 +95,30 @@ res = requests.get(product,timeout=5)
 if res.status_code != 200:
     pass
 def soup():
-    # send_email = sendmail.send_email
-    soup = bs4.BeautifulSoup(res.text,'html.parser')
-    element = soup.select('.bs')
-    data = element[0].text
-    if element[0].text != "A Best Best Place To find It solutions":
-        print("invalid")
-        send_email(url, old_content, new_content, defaced_time, recipients, subject)
+    url = "https://kevinever.github.io/hiddentech/"  # Replace with your desired URL
+    res = requests.get(url, timeout=5)
+
+    if res.status_code == 200:
+        soup = bs4.BeautifulSoup(res.text, 'html.parser')
+        element = soup.select('.bs')
+        data = element[0].text
+
+        if element[0].text != "A Best Best Place To find It solutions":
+            print("Invalid: Changes detected")
+            send_email(url, None, data, None, recipients, "Website Content Changed")
+        else:
+            print("No changes detected")
     else:
-        print("no changes detected")
+        print("Website not reachable")
 
-soup()
-# Set up scheduler to check websites every x seconds
+# Set up scheduler to check the website every 10 seconds
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=soup, trigger="interval", seconds=10)
+scheduler.add_job(soup, trigger="interval", seconds=10)
 scheduler.start()
-# print(data)
 
+# Keep the script running
+try:
+    while True:
+        pass
+except KeyboardInterrupt:
+    scheduler.shutdown()
