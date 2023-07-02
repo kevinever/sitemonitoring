@@ -16,6 +16,8 @@ from urllib.parse import urlparse
 
 def send_email(url, old_content, new_content, defaced_time, recipients, subject, smtp_server='smtp.gmail.com', smtp_port=587, smtp_username='kalisadoe@gmail.com', smtp_password='pibdptzdjqvltexu'):
     try:
+        # conn = psycopg2.connect(dbname="monitoring", user="postgres", password="post123", host="localhost", port="5432")
+        # cursor = conn.cursor()
         msg = MIMEText(f"URL: {url}\n\nDefaced Time: {defaced_time}\n\nOld Content:\n{old_content}\n\nNew Content:\n{new_content}")
         msg['Subject'] = Header(subject, 'utf-8')
         msg['From'] = smtp_username
@@ -89,12 +91,41 @@ except Exception as e:
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-product="https://kevinever.github.io/hiddentech/"
+# product="https://kevinever.github.io/hiddentech/"
 
-res = requests.get(product,timeout=5)
-if res.status_code != 200:
-    pass
+
+import requests
+from urllib.parse import urlparse
+
 def soup():
+
+    conn = psycopg2.connect(database="monitoring", user="postgres", password="post123", host="127.0.0.1", port="5432")
+    cur = conn.cursor()
+    cur.execute("SELECT url FROM urls")
+    rows = cur.fetchall()
+
+    for row in rows:
+        url = row[0]
+        parsed_url = urlparse(url)
+
+        # Check if the scheme is missing
+        if not parsed_url.scheme:
+            url = "http://" + url  # Prepend "http://" if no scheme is provided
+
+        try:
+            response = requests.get(url, timeout=5)
+
+            if response.status_code != 200:
+                print(f"Website {url} status code is not 200. Please check.")
+                send_email(url, None, None, None, recipients, "Website status code is not 200. Please check")
+            
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred while accessing {url}: {str(e)}")
+            # Handle the error or log it as needed
+
+    cur.close()
+    conn.close()
+
     url = "https://kevinever.github.io/hiddentech/"  # Replace with your desired URL
     res = requests.get(url, timeout=5)
 
@@ -102,10 +133,10 @@ def soup():
         soup = bs4.BeautifulSoup(res.text, 'html.parser')
         element = soup.select('.bs')
         data = element[0].text
-
-        if element[0].text != "A Best Best Place To find It solutions":
+        old_content ="A Best Best Place To find It solutions"
+        if element[0].text != old_content:
             print("Invalid: Changes detected")
-            send_email(url, None, data, None, recipients, "Website Content Changed")
+            send_email(url, old_content, data, None, recipients, "Website Content Changed")
         else:
             print("No changes detected")
     else:

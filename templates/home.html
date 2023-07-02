@@ -1,103 +1,66 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Website Monitoring</title>
+<head>
+  <title>Website Monitoring</title>
+  <link href="../static/css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-yM32o3CqVXzCbmka0YXIrA5BKol2chfEjev5Wso0dVo17gW2NoFLtAZwccUSblJoIg0sK9Tg2Md69UcELHOGCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <link href="../static/css/index.css" rel="stylesheet">
-        <!-- <style>
-          /* Add styles for sidebar navigation */
-      .sidenav {
-        width: 200px;
-        background-color: #f1f1f1;
-        position: fixed;
-        height: 100%;
-        overflow: auto;
-      }
-      .sidenav a {
-        padding: 16px;
-        text-decoration: none;
-        display: block;
-      }
-      .sidenav a:hover {
-        background-color: #555;
-        color: white;
-      }
-      .main {
-        margin-left: 200px; /* Adjust this value to match the width of the sidebar */
-        padding: 20px;
-      }
-        </style> -->
-  </head>
-  <body>
-    <div class="sidenav">
-      <a href="{{url_for('addweb')}}">Add Website</a>
-      <a href="{{url_for('addmail')}}">Add Email</a>
-      <a href="#">View Emails</a>
-      <a href="#">Manage Websites</a>
-      <a href="#">Incidents</a>
-      <a href="#">Uptime Reports</a>
-      <a href="#">Button 2</a>
-      <a href="#">Button 3</a>
-      <a href="#">Button 6</a>
-    </div>
-    <div class="main">
-      <h1>Website Monitoring</h1>
-      <table id="websites-table">
-        <thead>
-          <tr>
-            <th>Website</th>
-            <th>Status</th>
-            <th>Ping</th>
-            <th>Messages</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for url, status, ping in urls %}
-            <tr>
-              <td>{{ url }}</td>
-              <td class="status {% if status == 'online' %}online{% else %}offline{% endif %}">{{ status }}</td>
-              <td>{{ ping }}ms</td>
-              <td class="messages">
-                <div class="messages">
-                    {% if message %}
-                      <p>{{ message }}</p>
-                    {% endif %}
-                    {% if messages %}
-                      <ul>
-                        {% for message in messages %}
-                          <li>{{ message }}</li><br>
-                          <!-- <li>{{ message[1] }}</li>
-                          <li>{{ message[2] }}</li> -->
-                        {% endfor %}
-                      </ul></p>
-                    {% endif %}
-                  </div>
-                </ul>
-              </td>
-            </tr>
-          {% endfor %}
-      </tbody>
-    </table>
-    <!-- <div class="refresh">
-      <button onclick="location.reload()">Refresh</button>
-    </div> -->
-    <script> 
-        <!-- // Refresh the webpage every 60 seconds
-        setInterval(function() {
-          location.reload();
-        }, 30000);
-      </script>
-  </body>
-</html>
+  <style>
+    /* Add styles for sidebar navigation */
+    .sidenav {
+      width: 200px;
+      background-color: #333;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
 
+    .sidenav a {
+      padding: 16px 18px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #f1f1f1;
+      display: block;
+      border-bottom: 1px solid #555;
+    }
 
-<!-- 
- <!doctype html>
-<html lang="en">
-  <head>
-    <title>Website Monitoring</title>
-  </head>
-  <body>
+    .sidenav a:hover {
+      background-color: #555;
+    }
+
+    .main {
+      margin-left: 200px; /* Adjust this value to match the width of the sidebar */
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- <div class="sidenav">
+    <a href="{{url_for('addweb')}}">Add Website</a>
+    <a href="{{url_for('addmail')}}">Add Email</a>
+    <a href="#">View Emails</a>
+    <a href="#">Manage Websites</a>
+    <a href="#">Incidents</a>
+    <a href="#">Uptime Reports</a>
+    <a href="#">Button 2</a>
+    <a href="#">Button 3</a>
+    <a href="#">Button 6</a>
+  </div> -->
+  <div class="sidenav">
+    <a href="#"><i class="fas fa-globe"></i>NAVIGATE </a>
+    <a href="#"><i class="fas fa-globe"></i> <img src="../static/moni.jpeg" class="image"></a>
+    <a href="{{url_for('addweb')}}"><i class="fas fa-globe"></i> Add Website</a>
+    <a href="{{url_for('addmail')}}"><i class="fas fa-envelope"></i> Add Email</a>
+    <a href="#"><i class="fas fa-envelope-open"></i> View Emails</a>
+    <a href="#"><i class="fas fa-cogs"></i> Manage Websites</a>
+    <a href="#"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
+    <a href="#"><i class="fas fa-chart-line"></i> Uptime Reports</a>
+    <a href="#"><i class="fas fa-th-large"></i> Button 2</a>
+    <a href="#"><i class="fas fa-th"></i> Button 3</a>
+    <a href="#"><i class="fas fa-th-large"></i> Button 6</a>
+  </div>
+  
+  <div class="main">
     <h1>Website Monitoring</h1>
     <table id="websites-table">
       <thead>
@@ -110,26 +73,34 @@
       </thead>
       <tbody>
         {% for url, status, ping in urls %}
-          <tr>
-            <td>{{ url }}</td>
-            <td>{{ status }}</td>
-            <td>{{ ping }}ms</td>
-            <td>
+        <tr>
+          <td>{{ url }}</td>
+          <td class="status {% if status == 'online' %}online{% else %}offline{% endif %}">{{ status }}</td>
+          <td>{{ ping }}ms</td>
+          <td class="messages">
+            <div class="messages">
+              {% if message %}
+              <p>{{ message }}</p>
+              {% endif %}
+              {% if messages %}
               <ul>
-                 {% for message in messages %} -->
-                  <!-- <li>{{ message }}</li> -->
-                <!-- {% endfor %} -->
-              <!-- </ul>
-            </td>
-          </tr> -->
-        <!-- {% endfor %} -->
-      <!-- </tbody>
+                {% for message in messages %}
+                <li>{{ message }}</li><br>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-    <script> -->
-      <!-- // Refresh the webpage every 60 seconds
+    <script>
+      // Refresh the webpage every 60 seconds
       setInterval(function() {
         location.reload();
-      }, 60000);
+      }, 30000);
     </script>
-  </body>
-</html> --> 
+  </div>
+</body>
+</html>

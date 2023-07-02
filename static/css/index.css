@@ -1,4 +1,4 @@
-body {
+body { 
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
   }
@@ -71,7 +71,7 @@ body {
   }
 
   /* Sidebar */
-  .sidenav {
+   .sidenav {
     height: 100%;
     width: 200px;
     position: fixed;
@@ -97,13 +97,13 @@ body {
   
   .main {
     margin-left: 200px; /* Same as the width of the sidenav */
-    padding: 0px 10px;
-  }
+    padding: 0px 10px; 
+  } 
 
-  /* .bigger{
+   .bigger{
   width: 150px;
   height: 19px;    
-  } */
+  } 
   .bigger {
     font-size: 18px;
     padding: 10px 20px;
@@ -121,7 +121,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+   
   button.bigger:hover {
     background-color: #0056b3;
   }
@@ -129,6 +129,202 @@ body {
   input.bigger:focus,
   button.bigger:focus {
     outline: none;
-    box-shadow: 0 0 5px #007bff;
+    box-shadow: 0 0 5px #007bff; 
+   } 
+  .messages {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.sidenav a {
+  padding: 16px 18px 16px 19px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #1f1f1f;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease, color 0.3s ease; 
+}
+.image{
+  width: auto;
+  height: auto;
+  position: relative;
+}
+   /* Global Styles */
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #1f1f1f;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Table Styles */
+/* table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #2196f3;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+td.status {
+  font-weight: bold;
+}
+
+td.status.online {
+  color: #00b894;
+}
+
+td.status.offline {
+  color: #e74c3c;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.messages {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.messages p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.refresh {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+.refresh button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2196f3;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh button:hover {
+  background-color: #1976d2;
+} */
+
+/* Sidebar Styles */
+/* .sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav a {
+  padding: 16px 18px 16px 19px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #1f1f1f;
+  display: block;
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidenav a:hover {
+  color: #2196f3;
+  background-color: #f5f5f5;
+} */
+
+/* .main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  /* padding: 0px 10px;
+} */
+
+/* .bigger { */
+  /* font-size: 18px; */ */ */
+  /* padding: 10px 20px;
+}
+
+input.bigger {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button.bigger {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.bigger:hover {
+  background-color: #0056b3;
+}
+
+input.bigger:focus,
+button.bigger:focus {
+  outline: none;
+  box-shadow: 0 0 5px #007bff;
+} */
+
+/* Media Queries */
+@media screen and (max-width: 600px) {
+  .sidenav {
+    width: 100px;
+    padding-top: 10px;
   }
-  
+
+  .sidenav a {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .main {
+    margin-left: 100px;
+  }
+
+  .bigger {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
