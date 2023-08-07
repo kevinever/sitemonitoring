@@ -239,3 +239,6 @@ try:
 
 except Exception as e:
     logging.error(f"Error fetching data from the database: {e}")
+
+# return new_content
+

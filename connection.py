@@ -9,10 +9,30 @@ def create_table():
     """Create the urls and defaced_websites tables if they don't exist."""
     cur = conn.cursor()
     cur.execute("""
-        CREATE TABLE IF NOT EXISTS urls (
-            id SERIAL PRIMARY KEY,
-            url TEXT NOT NULL UNIQUE,
-            status TEXT NOT NULL
+        -- Table: public.urls
+
+-- DROP TABLE IF EXISTS public.urls;
+
+CREATE TABLE IF NOT EXISTS public.urls
+(
+    id integer NOT NULL DEFAULT nextval('urls_id_seq1'::regclass),
+    url character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    status integer,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    content_hash text COLLATE pg_catalog."default",
+    content text COLLATE pg_catalog."default",
+    ping text COLLATE pg_catalog."default",
+    content_before text COLLATE pg_catalog."default",
+    selector text COLLATE pg_catalog."default",
+    reference_content text COLLATE pg_catalog."default",
+    defaced_time timestamp without time zone DEFAULT now(),
+    CONSTRAINT urls_pkey1 PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.urls
+    OWNER to postgres;
         )
     """)
     cur.execute("""
@@ -39,13 +59,13 @@ def create_table():
 
 
 # Insert dummy data into urls table
-def insert_urls():
-    """Insert dummy data into urls table."""
-    cur = conn.cursor()
-    cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.example.com', 'active')")
-    cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.google.com', 'inactive')")
-    cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.facebook.com', 'active')")
-    conn.commit()
+# def insert_urls():
+#     """Insert dummy data into urls table."""
+#     cur = conn.cursor()
+#     cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.example.com', 'active')")
+#     cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.google.com', 'inactive')")
+#     cur.execute("INSERT INTO urls (url, status) VALUES ('http://www.facebook.com', 'active')")
+#     conn.commit()
 
 # Insert dummy data into defaced_websites table
 def insert_defaced_websites():
@@ -70,5 +90,5 @@ def insert_defaced_websites():
 
 # Call functions to create and insert data into tables
 create_table()
-insert_urls()
+# insert_urls()
 insert_defaced_websites()

@@ -1,106 +1,110 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Website Monitoring</title>
-  <link href="../static/css/index.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-yM32o3CqVXzCbmka0YXIrA5BKol2chfEjev5Wso0dVo17gW2NoFLtAZwccUSblJoIg0sK9Tg2Md69UcELHOGCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <style>
-    /* Add styles for sidebar navigation */
-    .sidenav {
-      width: 200px;
-      background-color: #333;
-      position: fixed;
-      height: 100%;
-      overflow: auto;
+ <!doctype html>
+ <html lang="en">
+ <head>
+   <title>Website Monitoring</title>
+   <link href="../static/css/index.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-yM32o3CqVXzCbmka0YXIrA5BKol2chfEjev5Wso0dVo17gW2NoFLtAZwccUSblJoIg0sK9Tg2Md69UcELHOGCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+   <style>
+     /* Add styles for sidebar navigation */
+     .sidenav {
+       width: 200px;
+       background-color: #333;
+       position: fixed;
+       height: 100%;
+       overflow: auto;
+     }
+ 
+     .sidenav a {
+       padding: 16px 18px;
+       text-decoration: none;
+       font-size: 20px;
+       color: #f1f1f1;
+       display: block;
+       border-bottom: 1px solid black;
+     }
+ 
+     .sidenav a:hover {
+       background-color: #555;
+     }
+ 
+     .main {
+       margin-left: 200px; /* Adjust this value to match the width of the sidebar */
+       padding: 20px;
+     }
+     .red{
+      color:red;
+     }
+     .defaced-time {
+      color: red;
     }
 
-    .sidenav a {
-      padding: 16px 18px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #f1f1f1;
-      display: block;
-      border-bottom: 1px solid #555;
-    }
 
-    .sidenav a:hover {
-      background-color: #555;
+    .no-change {
+      color: black;
     }
-
-    .main {
-      margin-left: 200px; /* Adjust this value to match the width of the sidebar */
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-  <!-- <div class="sidenav">
-    <a href="{{url_for('addweb')}}">Add Website</a>
-    <a href="{{url_for('addmail')}}">Add Email</a>
-    <a href="#">View Emails</a>
-    <a href="#">Manage Websites</a>
-    <a href="#">Incidents</a>
-    <a href="#">Uptime Reports</a>
-    <a href="#">Button 2</a>
-    <a href="#">Button 3</a>
-    <a href="#">Button 6</a>
-  </div> -->
-  <div class="sidenav">
-    <a href="#"><i class="fas fa-globe"></i>NAVIGATE </a>
-    <a href="#"><i class="fas fa-globe"></i> <img src="../static/moni.jpeg" class="image"></a>
-    <a href="{{url_for('addweb')}}"><i class="fas fa-globe"></i> Add Website</a>
-    <a href="{{url_for('addmail')}}"><i class="fas fa-envelope"></i> Add Email</a>
-    <a href="#"><i class="fas fa-envelope-open"></i> View Emails</a>
-    <a href="#"><i class="fas fa-cogs"></i> Manage Websites</a>
-    <a href="#"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
-    <a href="#"><i class="fas fa-chart-line"></i> Uptime Reports</a>
-    <a href="#"><i class="fas fa-th-large"></i> Button 2</a>
-    <a href="#"><i class="fas fa-th"></i> Button 3</a>
-    <a href="#"><i class="fas fa-th-large"></i> Button 6</a>
-  </div>
+   </style>
+ </head>
+ <body>
   
-  <div class="main">
-    <h1>Website Monitoring</h1>
-    <table id="websites-table">
-      <thead>
+   <div class="sidenav">
+     <a href="#"><i class="fas fa-globe"></i>NAVIGATE </a>
+     <a href="#"><i class="fas fa-globe"></i> </a>
+     <a href="{{url_for('addweb')}}"><i class="fas fa-globe"></i> Add Website</a>
+     <a href="{{url_for('addmail')}}"><i class="fas fa-envelope"></i> Add Email</a>
+     <a href="#"><i class="fas fa-envelope-open"></i> View Emails</a>
+     <a href="#"><i class="fas fa-cogs"></i> Manage Websites</a>
+     <a href="#"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
+     <a href="#"><i class="fas fa-chart-line"></i> Uptime Reports</a>
+     <!-- <a href="#"><i class="fas fa-th-large"></i> Button 2</a>
+     <a href="#"><i class="fas fa-th"></i> Button 3</a>
+     <a href="#"><i class="fas fa-th-large"></i> Button 6</a> -->
+   </div>
+   
+   <div class="main">
+     <h1>Website Monitoring</h1>
+     <table id="websites-table">
+       <thead>
+         <tr>
+           <th>Website</th>
+           <th>Status Code</th>
+           <th>Defaced Time</th>
+           <th>changed content</th>
+         </tr>
+       </thead>
+       <tbody>
+        {% for url, status , defaced_time in urls %}
         <tr>
-          <th>Website</th>
-          <th>Status</th>
-          <th>Ping</th>
-          <th>Messages</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for url, status, ping in urls %}
-        <tr>
-          <td>{{ url }}</td>
-          <td class="status {% if status == 'online' %}online{% else %}offline{% endif %}">{{ status }}</td>
-          <td>{{ ping }}ms</td>
-          <td class="messages">
-            <div class="messages">
-              {% if message %}
-              <p>{{ message }}</p>
-              {% endif %}
-              {% if messages %}
-              <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li><br>
-                {% endfor %}
-              </ul>
-              {% endif %}
-            </div>
-          </td>
+          <td class="status">{{ url }}</td>
+          <!-- <td class="status red">{{ status }}</td>
+          <td class="status red">{{ defaced_time }}</td>
+           -->
+
+           <td class="status {% if status == 'online' %}online{% else %}offline{% endif %}">{{ status }}</td>
+      <span id="red"><td class="status">{{ defaced_time|default('No change detected', True)|safe }}</td></span>
+
+
+
+          <!-- <td class="defaced-time {% if defaced_time == 'None' %}defaced-none{% endif %}">
+            
+            {{ defaced_time }}
+           
+          </td> -->
+          <!-- <td>{{ defaced_time }}</td>
+         -->
+         <td>{ new_content } kjl</td>
         </tr>
         {% endfor %}
-      </tbody>
-    </table>
-    <script>
-      // Refresh the webpage every 60 seconds
-      setInterval(function() {
-        location.reload();
-      }, 30000);
-    </script>
-  </div>
-</body>
-</html>
+       </tbody>
+     </table>
+     <script>
+       // Refresh the webpage every 60 seconds
+       setInterval(function() {
+         location.reload();
+       }, 30000);
+     </script>
+   </div>
+ </body>
+ </html>
+ 

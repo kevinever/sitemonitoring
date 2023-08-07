@@ -11,13 +11,18 @@ body {
   table {
     margin: 0 auto;
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
   }
 
   th, td {
     text-align: left;
-    padding: 8px;
+    padding: 22px;
     border-bottom: 1px solid #ddd;
+    
+    
+  }td{
+
+    border-right:1px solid black;
   }
 
   th {

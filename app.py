@@ -145,7 +145,7 @@
 #     app.run()
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template,request 
 import requests
 import psycopg2
 import hashlib
@@ -256,13 +256,17 @@ def send_email(url, old_content, new_content, defaced_time, recipients, subject,
         logging.error(f"Error sending email to {recipients}: {e}")
 
 
+# Add the soup() function to Jinja globals
+# app.jinja_env.globals.update(soup=soup)
+
+
 @app.route('/')
 def home():
     # Add your database connection details here
     conn = psycopg2.connect(database="monitoring", user="postgres", password="post123", host="127.0.0.1", port="5432")
     cur = conn.cursor()
 
-    cur.execute("SELECT url, status, ping FROM urls")
+    cur.execute("SELECT url, status, defaced_time FROM urls")
     rows = cur.fetchall()
 
     urls = []
@@ -271,7 +275,7 @@ def home():
         status = row[1]
         ping = row[2]
 
-        urls.append((url, status, ping))
+        urls.append((url, status,ping))
 
     messages = check_websites()
 
@@ -281,8 +285,15 @@ def home():
     return render_template('home.html', urls=urls, messages=messages)
 
 
-@app.route('/addweb')
+@app.route('/addweb',methods=('post','get'))
 def addweb():
+    if request.method =='post':
+        webname = request.form['webname']
+        date = request.form['date']
+        selector = request.form['selector']
+        content = request.form['content']
+        with psycopg2.connect("dbname='monitoring' user='postgres' password='post123' port='5432'") as conn:
+            insert_urls(webname,date,selector,content)
     return render_template('addweb.html')
 
 

@@ -1,4 +1,4 @@
-<!doctype html>
+<-- <!doctype html>
 <html lang="en">
   <head>
     <title>Website Monitoring</title>
@@ -19,17 +19,22 @@
         <thead>
           <tr>
             <th>Website Name</th>
-            
             <th>Date </th>
+            <th>selector</th>
+            <th>reference content</th>
+            
             <th>Action </th>
           </tr>
         </thead>
         <tbody>
-            <form>
+            <form method="post">
             <tr>
               <td><input type="text" id="webname" class="bigger" name='webname' placeholder="https://www.google.com"></td>
               <td><input type="date" name="date" id="" class="bigger"></td>
-              <td><input type="button" name="" id="" class="bigger" value="Submit"></td>
+              <td><input type="text" id="selector" class="bigger" name='selector' placeholder="css selector"></td>
+              <td><input type="text" id="reference content" class="bigger" name='content' placeholder="reference content"></td>
+              <!-- <td><input type="button" name="" id="" class="bigger" value="Submit"></td> -->
+             <td> <button type="submit" class="button full-width primary" value="submit">Sign Up</button></td>
             </tr>
           
           </form>
@@ -46,4 +51,3 @@
       </script>
   </body>
 </html>
-
